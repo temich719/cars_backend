@@ -1,0 +1,21 @@
+spring:
+  application:
+    name: cars_backend
+  datasource:
+    url: jdbc:postgresql://localhost:5432/tcars?currentSchema=public&serverTimezone=UTC
+    username: postgres
+    password: 007953hh
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 5
+      idle-timeout: 30000
+      connection-timeout: 30000
+      max-lifetime: 1800000
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+
+server:
+  port: 8080
