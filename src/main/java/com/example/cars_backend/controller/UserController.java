@@ -4,6 +4,8 @@ import com.example.cars_backend.dto.RestResponse;
 import com.example.cars_backend.dto.UserDto;
 import com.example.cars_backend.exception.ConvertImageToBytesException;
 import com.example.cars_backend.service.UserService;
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -27,8 +29,10 @@ public class UserController {
             consumes = MediaType.MULTIPART_FORM_DATA_VALUE
     )
     @ResponseStatus(HttpStatus.OK)
-    public RestResponse createUser(@RequestPart("user") UserDto userDto,
-                                   @RequestPart("avatar") MultipartFile avatarImage) throws ConvertImageToBytesException {
+    public RestResponse createUser(@RequestPart("user") String userJson,
+                                   @RequestPart("avatar") MultipartFile avatarImage) throws ConvertImageToBytesException, JsonProcessingException {
+        ObjectMapper objectMapper = new ObjectMapper();
+        UserDto userDto = objectMapper.readValue(userJson, UserDto.class);
         userService.createUser(userDto, avatarImage);
         return new RestResponse("User successfully created!");
     }

@@ -17,7 +17,7 @@ public class RabbitMq {
 
     @Bean
     public Queue queue() {
-        return new Queue(IMAGES_QUEUE_NAME, false);
+        return new Queue(IMAGES_QUEUE_NAME, true);
     }
 
     @Bean

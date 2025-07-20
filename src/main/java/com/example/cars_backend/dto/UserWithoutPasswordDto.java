@@ -12,15 +12,13 @@ import java.util.UUID;
 @NoArgsConstructor
 @Getter
 @Setter
-public class UserDto {
+public class UserWithoutPasswordDto {
 
-    //todo hibernate validator
     private UUID id;
     private String name;
     private String surname;
     private String avatarPath;
     private String login;
-    private String password;
     private String phone;
     private List<CarDto> favoriteCars;
 
