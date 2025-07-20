@@ -1,11 +1,17 @@
 package com.example.cars_backend.dto;
 
-import lombok.Data;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 import java.util.List;
 import java.util.UUID;
 
-@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
 public class UserDto {
 
     private UUID id;
@@ -13,7 +19,6 @@ public class UserDto {
     private String surname;
     private String avatarPath;
     private String login;
-    private String password;
     private String phone;
     private List<CarDto> favoriteCars;
 
