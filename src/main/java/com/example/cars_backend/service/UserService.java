@@ -1,19 +1,19 @@
 package com.example.cars_backend.service;
 
 import com.example.cars_backend.dto.UserDto;
+import com.example.cars_backend.exception.ConvertImageToBytesException;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.util.UUID;
 
 public interface UserService {
 
-    void createUser(UserDto userDto);
+    void createUser(UserDto userDto, MultipartFile avatarImage) throws ConvertImageToBytesException;
 
-    void updateUser(UserDto userDto, UUID id);
-
-    void deleteUser(UUID id);
-
-    void getUserById(UUID id);
+    UserDto getUserById(UUID id);
 
     void addCarToFavorites(UUID userId, UUID carId);
+
+    void deleteCarFromFavorites(UUID userId, UUID carId);
 
 }
