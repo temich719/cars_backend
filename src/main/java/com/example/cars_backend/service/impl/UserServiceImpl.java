@@ -33,9 +33,9 @@ public class UserServiceImpl implements UserService {
     @Override
     public void createUser(UserDto userDto, MultipartFile avatarImage) throws ConvertImageToBytesException {
         try {
-            rabbitTemplate.convertAndSend(IMAGES_EXCHANGE_NAME, IMAGES_ROUTING_KEY, new SaveImageMessage(userDto.getAvatarPath(), avatarImage.getBytes()));
-            //todo password hashing
+            //todo password hashing when will add spring security
             userRepository.save(userMapper.mapToEntity(userDto));
+            rabbitTemplate.convertAndSend(IMAGES_EXCHANGE_NAME, IMAGES_ROUTING_KEY, new SaveImageMessage(userDto.getAvatarPath(), avatarImage.getBytes()));
         } catch (IOException e) {
             throw new ConvertImageToBytesException("Can't convert given image to byte array!");
         }
