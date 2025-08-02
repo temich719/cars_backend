@@ -22,7 +22,7 @@ public class CarController {
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<?> getCars(@RequestParam(defaultValue = "0", required = false) int page,
+    public ResponseEntity<?> getCars(@RequestParam(defaultValue = "1", required = false) int page,
                                      @RequestParam(defaultValue = "10", required = false) int size) {
         return ResponseEntity.ok().body(Map.of("cars", carService.getCars(page, size)));
     }

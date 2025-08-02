@@ -30,6 +30,6 @@ public class CarServiceImpl implements CarService {
     @Transactional(readOnly = true)
     @Override
     public List<CarDto> getCars(int page, int size) {
-        return carRepository.getCarsPage(page * size, size).stream().map(carMapper::mapToDto).collect(Collectors.toList());
+        return carRepository.getCarsPage((page - 1) * size, size).stream().map(carMapper::mapToDto).collect(Collectors.toList());
     }
 }
